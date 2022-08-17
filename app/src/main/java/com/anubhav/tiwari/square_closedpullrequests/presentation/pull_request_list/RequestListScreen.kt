@@ -21,7 +21,7 @@ import com.anubhav.tiwari.square_closedpullrequests.presentation.pull_request_li
 fun RequestListScreen(
     viewModel: PullRequestViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val state = viewModel.state
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(state.pullRequests) { PullRequestItem ->
@@ -30,7 +30,7 @@ fun RequestListScreen(
         }
 
 
-        if (state.error.isNotBlank()) {
+        if (state.error?.isNotBlank() == true) {
             Text(
                 text = state.error,
                 color = MaterialTheme.colors.error,
